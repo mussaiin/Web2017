@@ -1,0 +1,24 @@
+h1 {
+  color: green;
+}
+.person {
+  color: red;
+}
+.list {
+  border: 1px solid red;
+  border-radius: 6px;
+  width: 500px;
+}
+.list ul {
+  padding-left: 30px;
+}
+.list li {
+  font-size: 10px;
+}
+.list a{
+  text-decoration: none;
+  color: blue;
+  font-size: 20px;
+}
+.retake a{
+  color: red;

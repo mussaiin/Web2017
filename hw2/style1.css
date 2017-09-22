@@ -1,0 +1,14 @@
+a {
+  border: 2px solid #643B03;
+  border-radius: 6px;
+  background-color: green;
+  color: #fff;
+  text-decoration: none;
+  padding: 1px 20px;
+  margin-left: 6px;
+  font-family: sans-serif;
+}
+a:hover {
+  color: green;
+  background-color: #fff;
+}

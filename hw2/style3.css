@@ -1,0 +1,43 @@
+.menu {
+  margin-bottom: 13px;
+}
+.menu a {
+  color: green;
+}
+.item {
+  border: 1px solid red;
+  border-radius: 5px;
+  width: 430px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+.urgent {
+  background-color: #FFFF00;
+}
+img, .main_body, .title{
+  display: inline-block;
+}
+.description, .attributes{
+  margin: 0 0 2px 0;
+}
+.title {
+  vertical-align: middle;
+  margin-bottom: 17px;
+}
+.title a {
+  font-size: 25px;
+}
+.text_for {
+  font-weight: bold;
+  margin: 0 7px;
+}
+.price {
+  border-radius: 5px;
+  background-color: #FFDDDD;
+  color: green;
+  font-size: 20px;
+  padding: 4px;
+}
+.city {
+  font-weight: bold;
+}
