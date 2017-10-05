@@ -1,0 +1,13 @@
+.overlaycontent{
+  padding: 5px;
+  outline-offset: bottom;
+  background-color: rgb(255, 0, 0);
+}
+#overlay{
+  padding: 10px;
+  bottom: 0%;
+  right: 0%;
+  position: fixed;
+  background-color: rgb(255, 255, 0);
+  margin-right: 20px;
+}
