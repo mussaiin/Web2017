@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body
+        {
+            background-color: white;
+        }
+        #cards .card {
+            border: 1px solid black;
+            display: flex;
+            width: 300px;
+        }
+
+        #cards .card .title {
+            flex-grow: 1;
+        }
+
+        #cards .card .price {
+            font-weight: bold;
+            padding-right: 20px;
+        }
+
+        #loading {
+            display: none;
+        }
+
+        #cards {
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button>Load</button>
+    <div>
+        <button id="sortByMaker">Sort by maker</button>
+        <button id="sortByPrice">Sort by price</button>
+    </div>
+    <div id="cards">
+        <img width="300px" height="200px" id="loading" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+    </div>
+
+
+    <script defer>
+        var toSort = 0;
+
+        function process(responses) {
+            if (toSort == 1) {
+                responses.sort((a, b) => a.maker.localeCompare(b.maker));
+            } else if (toSort == 2) {
+                responses.sort((a, b) => a.price - b.price);
+            }
+            for (let response of responses) {
+                const greeting = document.querySelector("#cards");
+                let newEl = document.createElement("div");
+                newEl.classList.add("card");
+                let newElmaker = document.createElement("div");
+                let newElmodel = document.createElement("div");
+                let newElprice = document.createElement("div");
+                let maker = response.maker + " " + response.model;
+                newElmaker.textContent = maker;
+                newElmaker.classList.add("title");
+                var price = response.price;
+                if(price>40000){
+                  newElprice.textContent = price;
+                  newElprice.classList.add("price");
+                  newEl.appendChild(newElmaker);
+                  newEl.appendChild(newElprice);
+                  greeting.appendChild(newEl);
+                }
+            }
+        }
+
+        function work() {
+            toSort = -1;
+            var btn = document.querySelector('button');
+            document.getElementById('loading').style.display = 'block';
+            btn.innerHTML = 'Loading...';
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+                call();
+                btn.innerHTML = 'Items are loaded';
+            }, 500);
+        }
+
+        function sortByMaker() {
+            if (toSort == -1) {
+                toSort = 1;
+                document.querySelector("#cards").innerHTML = '';
+                call();
+            }
+        }
+
+        function sortByPrice() {
+            if (toSort == -1) {
+                toSort = 2;
+                document.querySelector("#cards").innerHTML = '';
+                call();
+            }
+        }
+
+        function toText(response) {
+            return response.json().then(process);
+        }
+
+        function call() {
+            fetch("http://demo4296963.mockable.io/listCars").then(toText);
+        }
+
+        function sortByName(a, b) {
+            return a.maker.localeCompare(b.maker);
+        }
+        //students.sort(sortByName);
+        document.querySelector("button").addEventListener("click", work);
+        document.querySelector("#sortByMaker").addEventListener("click", sortByMaker);
+        document.querySelector("#sortByPrice").addEventListener("click", sortByPrice);
+    </script>
+</body>
+
+</html>

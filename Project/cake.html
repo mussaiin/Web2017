@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<title>Кафе "У Адины"</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="./css/main.css">
+<script src="./scripts/script1.js" defer></script>
+<script src="./scripts/script2.js" defer></script>
+<style>
+    body, html {
+        height: 100%;
+    }
+
+    body,h1,h2,h3,h4,h5,h6 {
+        font-family: Noteworthy, sans-serif;
+    }
+    .menu {
+        display: none;
+    }
+    ul{
+      list-style-type: square;
+    }
+    #loading{
+      display: none;
+    }
+</style>
+
+<body class="body-animate-opacity">
+    <div class="body-top body-hide-small">
+        <div class="body-bar body-xlarge body-black body-opacity body-hover-opacity-off" id="myNavbar">
+            <a href="main.html" class="body-bar-item body-button">HOME</a>
+            <a href="main.html#menu" class="body-bar-item body-button">MENU</a>
+            <a href="main.html#about" class="body-bar-item body-button">ABOUT</a>
+            <a href="main.html#googleMap" class="body-bar-item body-button">CONTACT</a>
+        </div>
+    </div>
+    <!-- About Container -->
+    <div class="body-container body-padding-64 body-brown body-xlarge" id="about">
+        <div class="body-content">
+          <h2 class="body-center body-jumbo" style="margin-bottom:16px">Pizza</h1>
+            <div id="bigImage" class="body-center body-card">
+                <img id="first" style="width:630px; height:300px;" src="https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-margherita-.jpg"/>
+                <div id="carousel">
+                      <img src="https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-margherita-.jpg" style="width:100px; height:100px;" onclick = "changeImage('https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-margherita-.jpg')">
+                      <img src="https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-deepdish.jpg" style="width:100px; height:100px;" onclick = "changeImage('https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-deepdish.jpg')">
+                      <img src="https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/onions.jpg" style="width:100px; height:100px;" onclick = "changeImage('https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/onions.jpg')">
+                      <img src="https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/rectangle.jpg" style="width:100px; height:100px;" onclick = "changeImage('https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/rectangle.jpg')">
+                      <img src="https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-gourmet.jpg" style="width:100px; height:100px;" onclick = "changeImage('https://cdnimg.webstaurantstore.com/uploads/buying_guide/2014/11/pizzatypes-gourmet.jpg')">
+                      <img src="https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/flat.jpg" style="width:100px; height:100px;" onclick = "changeImage('https://cdnimg.webstaurantstore.com/uploads/blog/2016/8/flat.jpg')">
+                </div>
+            </div>
+            <p>There are different types of pizza. You can choose one by your taste only for 2490KZT</p>
+            <p><img src="http://www.oogazone.com/wp-content/uploads/best-free-clipart-vector-clipartfest-chef-image.jpg" style="width:150px; height:150px;" class="body-circle body-right" alt="Chef"></p>
+            <button class="body-button">Load Pizzas:</button>
+            <div id="pizzaList">
+              <img width="300px" height="200px" id="loading" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+            </div>
+            <script defer>
+
+                function process(responses) {
+                    for (let response of responses) {
+                        const greeting = document.querySelector("#pizzaList");
+                        let newEl = document.createElement("ul");
+                        let newElmaker = document.createElement("li");
+                        let maker = response.maker;
+                        newElmaker.textContent = maker;
+                        newEl.appendChild(newElmaker);
+                        greeting.appendChild(newEl);
+                    }
+                }
+
+                function work() {
+                    var btn = document.querySelector('button');
+                    document.getElementById('loading').style.display = 'block';
+                    btn.innerHTML = 'Loading...';
+                    setTimeout(function() {
+                        document.getElementById('loading').style.display = 'none';
+                        call();
+                        btn.innerHTML = 'Items are loaded';
+                    }, 500);
+                }
+                function toText(response) {
+                    return response.json().then(process);
+                }
+
+                function call() {
+                    fetch("http://demo6861519.mockable.io/pizzaList").then(toText);
+                }
+                document.querySelector("button").addEventListener("click", work);
+            </script>
+            <br>
+            <select id="pizza" class="body-select">
+              <option value="">Select Pizza</option>
+              <option>Neapolitan Pizza</option>
+              <option>Chicago Pizza</option>
+              <option>New York Style Pizza</option>
+              <option>Sicilian Pizza</option>
+              <option>California Pizza</option>
+              <option>Margheritta Pizza</option>
+            </select>
+            <button id="addPizza" class="body-button" onclick="isEmpty()">Order a Pizza</button>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="body-center body-black body-padding-48 body-xxlarge">
+        <!--<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="body-hover-text-green">w3.css</a></p> -->
+        <p>Powered by <a href="https://www.instagram.com/mussaiin" title="Insta" target="_blank" class="body-hover-text-green">Nurlybek Mussin</a></p>
+    </footer>
+</body>
+</html>

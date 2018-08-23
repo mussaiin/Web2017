@@ -1,0 +1,17 @@
+<form action="task1.php">
+	<p>Maker and model <select name="model">
+	<option value="BMW">BMW</option>
+	<option value="Audi">Audi</option>
+	<option value="Toyota">Toyota</option>
+</select></p>
+	<p>Price <input type="number" name="cost" required></p>
+	<p>Condition <input type="radio" name="year" value="New" required>New <input type="radio" name="year" value="Old" required>Old</p>
+	<p>Type <select name="Type">
+	<option value="Coupe">Coupe</option>
+	<option value="Sedan">Sedan</option>
+	<option value="Hatchback">Hatchback</option>
+</select></p>
+	<p>Attributes <input type="checkbox" name="att[]" id="att" value="cd/dvd" required>CD/DVD <input type="checkbox" name="att[]" id="att" value="cruise control">Cruise Control <input type="checkbox" name="att[]" id="att" value="seat heating">Seat heating
+		</p>
+	<input type="submit" value="Submit">
+</form>
